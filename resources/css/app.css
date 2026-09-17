@@ -1,0 +1,51 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* Brand palette — matches the live site's current colors exactly. */
+    --color-brand-50: #fdf2f7;
+    --color-brand-100: #fce7f0;
+    --color-brand-200: #f9c9dd;
+    --color-brand-300: #f492bd;
+    --color-brand-400: #ec5a98;
+    --color-brand-500: #e30569; /* primary accent — from mittaldentalclinic.com */
+    --color-brand-600: #c20459;
+    --color-brand-700: #9c0348;
+    --color-brand-800: #75033a;
+    --color-brand-900: #52022a;
+
+    --color-ink: #353638; /* body text, matches current site */
+    --color-ink-muted: #626262;
+    --color-ink-faint: #a8a8a8;
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+@layer utilities {
+    [data-reveal] {
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity 350ms ease-out, transform 350ms ease-out;
+    }
+
+    [data-reveal].reveal-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        [data-reveal] {
+            opacity: 1;
+            transform: none;
+            transition: none;
+        }
+    }
+}
