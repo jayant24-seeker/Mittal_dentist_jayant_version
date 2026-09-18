@@ -38,8 +38,14 @@ return [
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
-            'busy_timeout' => null,
-            'journal_mode' => null,
+            // Defaults (null) make SQLite fail immediately on any lock
+            // contention instead of waiting — busy_timeout makes it retry
+            // for 5s, and WAL mode lets reads happen while a write is in
+            // progress. Matters here because migrate+seed write a burst of
+            // data right as the container boots, immediately followed by
+            // the first real request's session write.
+            'busy_timeout' => 5000,
+            'journal_mode' => 'wal',
             'synchronous' => null,
             'transaction_mode' => 'DEFERRED',
         ],
