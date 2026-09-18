@@ -39,6 +39,7 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progre
     && rm -rf node_modules \
     && mkdir -p storage/framework/{cache,sessions,testing,views} storage/logs \
     && touch database/database.sqlite \
+    && chown -R www-data:www-data storage bootstrap/cache database/database.sqlite \
     && chmod -R 775 storage bootstrap/cache database/database.sqlite \
     && chmod +x /usr/local/bin/entrypoint.sh
 
