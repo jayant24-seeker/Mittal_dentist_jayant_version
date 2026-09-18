@@ -121,7 +121,7 @@
                     </div>
 
                     <button type="submit"
-                            class="w-full rounded-full bg-brand-500 px-6 py-3.5 text-base font-semibold text-white transition hover:bg-brand-600">
+                            class="w-full rounded-full bg-brand-500 px-6 py-3.5 text-base font-semibold text-white transition hover:-translate-y-0.5 hover:bg-brand-600">
                         Request Appointment
                     </button>
                 </form>

@@ -11,7 +11,7 @@
         <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             @foreach ($posts as $post)
                 <a href="{{ route('content.show', $post->slug) }}" data-reveal
-                   class="group flex flex-col rounded-2xl border border-brand-100 p-6 transition hover:shadow-lg">
+                   class="group flex flex-col rounded-2xl border border-brand-100 p-6 transition hover:-translate-y-1 hover:border-brand-300 hover:shadow-lg">
                     @if ($post->category)
                         <span class="text-xs font-semibold uppercase tracking-wide text-brand-500">{{ $post->category }}</span>
                     @endif

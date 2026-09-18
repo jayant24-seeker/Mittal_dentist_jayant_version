@@ -34,7 +34,7 @@
                 Call Now
             </a>
             <a href="{{ route('contact') }}#appointment-form"
-               class="inline-flex items-center rounded-full bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-600 hover:shadow-md">
+               class="inline-flex items-center rounded-full bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-brand-600 hover:shadow-md">
                 Book Appointment
             </a>
         </div>

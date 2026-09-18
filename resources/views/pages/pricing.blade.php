@@ -57,7 +57,7 @@
             <h2 class="text-xl font-bold text-ink">Have questions about your treatment cost?</h2>
             <p class="mt-2 text-ink-muted">Book a free consultation and we'll give you a personalized quote.</p>
             <a href="{{ route('contact') }}#appointment-form"
-               class="mt-6 inline-flex items-center justify-center rounded-full bg-brand-500 px-8 py-3.5 text-base font-semibold text-white transition hover:bg-brand-600">
+               class="mt-6 inline-flex items-center justify-center rounded-full bg-brand-500 px-8 py-3.5 text-base font-semibold text-white transition hover:-translate-y-0.5 hover:bg-brand-600">
                 Book Appointment
             </a>
         </div>

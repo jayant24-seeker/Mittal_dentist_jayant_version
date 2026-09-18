@@ -15,7 +15,7 @@
             </p>
             <div data-reveal class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <a href="{{ route('contact') }}#appointment-form"
-                   class="inline-flex items-center justify-center rounded-full bg-brand-500 px-8 py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-brand-600 hover:shadow-md">
+                   class="inline-flex items-center justify-center rounded-full bg-brand-500 px-8 py-3.5 text-base font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-brand-600 hover:shadow-md">
                     Book Appointment
                 </a>
                 <a href="tel:{{ config('clinic.primary_call_tel') }}"
@@ -88,7 +88,7 @@
                 <x-section-heading eyebrow="Recognition" tag="h2">Trusted &amp; Felicitated</x-section-heading>
                 <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                     @foreach ($recognitions as $item)
-                        <figure data-reveal class="overflow-hidden rounded-2xl bg-white shadow-sm">
+                        <figure data-reveal class="overflow-hidden rounded-2xl border border-brand-100 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-lg">
                             <img src="{{ $item->image }}" alt="{{ $item->title }}" loading="lazy" class="h-40 w-full object-cover">
                             <figcaption class="p-4 text-sm font-medium text-ink">{{ $item->title }}</figcaption>
                         </figure>
@@ -109,7 +109,7 @@
             <x-section-heading eyebrow="From the Blog" tag="h2">Latest News &amp; Dental Advice</x-section-heading>
             <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach ($posts as $post)
-                    <a href="{{ route('content.show', $post->slug) }}" data-reveal class="group rounded-2xl border border-brand-100 p-6 transition hover:shadow-lg">
+                    <a href="{{ route('content.show', $post->slug) }}" data-reveal class="group rounded-2xl border border-brand-100 p-6 transition hover:-translate-y-1 hover:border-brand-300 hover:shadow-lg">
                         <p class="text-xs font-semibold uppercase tracking-wide text-brand-500">{{ $post->published_at->format('d M Y') }}</p>
                         <h3 class="mt-2 text-lg font-semibold text-ink group-hover:text-brand-500">{{ $post->title }}</h3>
                         <p class="mt-2 text-sm leading-relaxed text-ink-muted">{{ \Illuminate\Support\Str::limit($post->excerpt, 110) }}</p>
@@ -125,7 +125,7 @@
             <h2 class="text-3xl font-bold text-white sm:text-4xl">Ready to Get Your Smile Back?</h2>
             <p class="mt-3 text-brand-50">Book an appointment today and let our team take care of the rest.</p>
             <a href="{{ route('contact') }}#appointment-form"
-               class="mt-8 inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-base font-semibold text-brand-600 shadow-sm transition hover:shadow-md">
+               class="mt-8 inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-base font-semibold text-brand-600 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
                 Book Appointment
             </a>
         </div>

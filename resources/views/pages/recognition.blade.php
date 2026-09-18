@@ -17,7 +17,7 @@
                 <h2 class="text-xl font-semibold text-ink">Achievements &amp; Felicitations</h2>
                 <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     @foreach ($achievements as $item)
-                        <figure data-reveal class="overflow-hidden rounded-2xl border border-brand-100 bg-white shadow-sm">
+                        <figure data-reveal class="overflow-hidden rounded-2xl border border-brand-100 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-lg">
                             <img src="{{ $item->image }}" alt="{{ $item->title }}" loading="lazy" class="h-48 w-full object-cover">
                             <figcaption class="p-4">
                                 <p class="text-sm font-semibold text-ink">{{ $item->title }}</p>
@@ -36,7 +36,7 @@
                 <h2 class="text-xl font-semibold text-ink">Press Mentions</h2>
                 <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     @foreach ($press as $item)
-                        <figure data-reveal class="overflow-hidden rounded-2xl border border-brand-100 bg-white shadow-sm">
+                        <figure data-reveal class="overflow-hidden rounded-2xl border border-brand-100 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-lg">
                             <img src="{{ $item->image }}" alt="{{ $item->title }}" loading="lazy" class="h-48 w-full object-cover">
                             <figcaption class="p-4">
                                 <p class="text-sm font-semibold text-ink">{{ $item->title }}</p>
