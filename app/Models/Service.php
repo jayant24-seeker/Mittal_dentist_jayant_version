@@ -8,6 +8,7 @@ class Service extends Model
 {
     protected $fillable = [
         'slug', 'title', 'summary', 'body', 'icon', 'image',
+        'price_from', 'pricing_anchor',
         'is_featured', 'sort_order', 'meta_title', 'meta_description',
     ];
 

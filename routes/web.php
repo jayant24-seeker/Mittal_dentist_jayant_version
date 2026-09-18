@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PricingController;
 use App\Http\Controllers\RecognitionController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SitemapController;
@@ -17,6 +18,10 @@ Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap')
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+
+// Same URL the legacy site used (/charges/), so this keeps its existing
+// search ranking rather than needing a redirect.
+Route::get('/charges', [PricingController::class, 'index'])->name('pricing');
 
 Route::get('/recognition', [RecognitionController::class, 'index'])->name('recognition');
 

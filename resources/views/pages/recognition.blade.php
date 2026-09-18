@@ -1,5 +1,5 @@
 <x-layout
-    title="Recognition &amp; Media"
+    title="Recognition & Media"
     description="Achievements, felicitations and press mentions for Dr. Sankalp Mittal and Mittal Dental Clinic, Jaipur.">
 
     <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">

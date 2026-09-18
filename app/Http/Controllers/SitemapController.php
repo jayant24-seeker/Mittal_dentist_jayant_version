@@ -14,6 +14,7 @@ class SitemapController extends Controller
             route('home'),
             route('about'),
             route('services.index'),
+            route('pricing'),
             route('recognition'),
             route('blog.index'),
             route('contact'),

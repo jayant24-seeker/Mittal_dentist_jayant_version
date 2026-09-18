@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\GalleryItem;
 use App\Models\Post;
+use App\Models\PricingItem;
 use App\Models\Service;
 use App\Models\TeamMember;
 use App\Models\Transformation;
@@ -52,6 +53,8 @@ class DatabaseSeeder extends Seeder
                     .'<li>Durability — with good care, many implants last a lifetime.</li>'
                     .'</ul>'
                     .'<h2>How Successful Are Dental Implants?</h2><p>Success rates vary depending on placement in the jaw, but in general dental implants have a success rate of up to 98%.</p>',
+                'price_from' => '₹45,000 / implant',
+                'pricing_anchor' => 'dental-implants-crowns-bridges',
                 'is_featured' => true,
                 'sort_order' => 1,
             ],
@@ -89,6 +92,8 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Root Canal Treatment',
                 'summary' => 'Save infected or badly decayed teeth with modern, low-pain RCT.',
                 'body' => '<p>[CONTENT PENDING MIGRATION] — Full copy to be migrated from the legacy /root-canals/ page during Phase 1 content migration.</p>',
+                'price_from' => '₹8,000 onwards',
+                'pricing_anchor' => 'rct-fillings-others',
                 'sort_order' => 4,
             ],
             [
@@ -96,6 +101,8 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Dental Braces & Orthodontics',
                 'summary' => 'Digital orthodontics and aligners for a straighter, confident smile.',
                 'body' => '<p>[CONTENT PENDING MIGRATION] — Full copy to be migrated from the legacy /dental-brace/ page during Phase 1 content migration.</p>',
+                'price_from' => '₹55,000',
+                'pricing_anchor' => 'orthodontic-braces-treatment',
                 'sort_order' => 5,
             ],
             [
@@ -103,6 +110,8 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Dental Crowns',
                 'summary' => 'Durable, natural-looking crowns to restore damaged teeth.',
                 'body' => '<p>[CONTENT PENDING MIGRATION] — Full copy to be migrated from the legacy /dental-crowns/ page during Phase 1 content migration.</p>',
+                'price_from' => '₹7,000 / crown',
+                'pricing_anchor' => 'dental-implants-crowns-bridges',
                 'sort_order' => 6,
             ],
             [
@@ -117,6 +126,8 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Gum Surgery',
                 'summary' => 'Periodontal treatment for healthy, disease-free gums.',
                 'body' => '<p>[CONTENT PENDING MIGRATION] — Full copy to be migrated from the legacy /gum-surgery/ page during Phase 1 content migration.</p>',
+                'price_from' => '₹4,000 onwards',
+                'pricing_anchor' => 'gums-treatment',
                 'sort_order' => 8,
             ],
         ];
@@ -211,5 +222,70 @@ class DatabaseSeeder extends Seeder
             'consent_confirmed' => false,
             'sort_order' => 2,
         ]);
+
+        // Full price list migrated verbatim from the legacy /charges/ page.
+        $pricingItems = [
+            ['category' => 'Consultation', 'name' => 'Consultation + RVG X-ray (Single Film)', 'price_inr' => '₹500/-', 'price_usd' => '$9'],
+            ['category' => 'Consultation', 'name' => 'Consultation + OPG X-ray (Full Mouth)', 'price_inr' => '₹1,000/-', 'price_usd' => '$19'],
+
+            ['category' => 'Dental Implants, Crowns & Bridges', 'name' => 'Dentium Dental Implants (made in Korea)', 'price_inr' => '₹45,000/- per implant', 'price_usd' => '$499 per implant'],
+            ['category' => 'Dental Implants, Crowns & Bridges', 'name' => 'Noris Dental Implants (made in Israel)', 'price_inr' => '₹55,000/- per implant', 'price_usd' => '$599 per implant'],
+            ['category' => 'Dental Implants, Crowns & Bridges', 'name' => 'Neodent Dental Implants (made in Brazil)', 'price_inr' => '₹65,000/- per implant', 'price_usd' => '$699 per implant'],
+            ['category' => 'Dental Implants, Crowns & Bridges', 'name' => 'Ankylos Dental Implants (made in Germany)', 'price_inr' => '₹75,000/- per implant', 'price_usd' => '$799 per implant'],
+            ['category' => 'Dental Implants, Crowns & Bridges', 'name' => 'Nobel Biocare Active Dental Implants (made in USA)', 'price_inr' => '₹85,000/- per implant', 'price_usd' => '$899 per implant'],
+            ['category' => 'Dental Implants, Crowns & Bridges', 'name' => 'Straumann BLX Dental Implants (made in Switzerland)', 'price_inr' => '₹85,000/- per implant', 'price_usd' => '$899 per implant'],
+            ['category' => 'Dental Implants, Crowns & Bridges', 'name' => 'Zimmer Dental Implants (made in USA)', 'price_inr' => '₹95,000/- per implant', 'price_usd' => '$1,099 per implant'],
+            ['category' => 'Dental Implants, Crowns & Bridges', 'name' => 'BioHorizons Camlog Implants (made in Germany)', 'price_inr' => '₹1,05,000/- per implant', 'price_usd' => '$1,109 per implant'],
+            ['category' => 'Dental Implants, Crowns & Bridges', 'name' => 'Surgical Guide (Computer Guided Dental Implant Surgery)', 'price_inr' => '₹3,000/- onwards (variable)', 'price_usd' => '$39 onwards (variable)'],
+            ['category' => 'Dental Implants, Crowns & Bridges', 'name' => 'Porcelain Fused to Metal (CAD-CAM) — Cement Retained', 'price_inr' => '₹7,000/- per crown', 'price_usd' => '$79 per crown'],
+            ['category' => 'Dental Implants, Crowns & Bridges', 'name' => 'Zirconia Crowns (Full Ceramic), 15 yr warranty', 'price_inr' => '₹11,000/- per crown', 'price_usd' => '$119 per crown'],
+            ['category' => 'Dental Implants, Crowns & Bridges', 'name' => 'Zirconia Crowns — Screw Retained For Implants', 'price_inr' => '₹11,000/- per implant crown', 'price_usd' => '$119 per implant crown'],
+            ['category' => 'Dental Implants, Crowns & Bridges', 'name' => 'Lithium Disilicate Crowns, 20 yr warranty', 'price_inr' => '₹16,000/- per crown', 'price_usd' => '$175 per crown'],
+            ['category' => 'Dental Implants, Crowns & Bridges', 'name' => 'Nano-Hybrid Ceramic Crowns, 20 yr warranty', 'price_inr' => '₹21,000/- per crown', 'price_usd' => '$229 per crown'],
+            ['category' => 'Dental Implants, Crowns & Bridges', 'name' => 'Removable Partial Denture (Flexible)', 'price_inr' => '₹15,000/- upwards', 'price_usd' => '$200 upwards'],
+            ['category' => 'Dental Implants, Crowns & Bridges', 'name' => 'Upper and Lower Complete Denture (Imported)', 'price_inr' => '₹45,000/- onwards, full set', 'price_usd' => '$585 onwards, full set'],
+
+            ['category' => 'Cosmetic Dentistry', 'name' => 'Zirconia Veneer', 'price_inr' => '₹11,000/- per tooth', 'price_usd' => '$119 per tooth'],
+            ['category' => 'Cosmetic Dentistry', 'name' => 'E-Max / Lithium Disilicate Veneer', 'price_inr' => '₹16,000/- per tooth', 'price_usd' => '$175 per tooth'],
+            ['category' => 'Cosmetic Dentistry', 'name' => 'Advanced Whitening (2-3 cycles)', 'price_inr' => '₹10,000/- – ₹16,000/-', 'price_usd' => '$109 – $175'],
+
+            ['category' => 'RCT / Fillings / Others', 'name' => 'Fillings (Fluoride)', 'price_inr' => '₹1,500/- – ₹3,000/-', 'price_usd' => '$19 – $35'],
+            ['category' => 'RCT / Fillings / Others', 'name' => 'Fillings (Composite)', 'price_inr' => '₹1,500/- – ₹3,000/-', 'price_usd' => '$19 – $35'],
+            ['category' => 'RCT / Fillings / Others', 'name' => 'Only RCT', 'price_inr' => '₹8,000/- onwards', 'price_usd' => '$89 onwards'],
+            ['category' => 'RCT / Fillings / Others', 'name' => 'Re-RCT', 'price_inr' => '₹10,000/- per tooth', 'price_usd' => '$109 per tooth'],
+            ['category' => 'RCT / Fillings / Others', 'name' => 'Dental Jewellery (Dental Crystal)', 'price_inr' => '₹3,000/- per crystal', 'price_usd' => '$39 per crystal'],
+            ['category' => 'RCT / Fillings / Others', 'name' => 'Night Guard / TMJ Splint', 'price_inr' => '₹5,000/- per set', 'price_usd' => '$59 per set'],
+
+            ['category' => 'Gums Treatment', 'name' => 'Dental Diode Laser', 'price_inr' => '₹10,000/- upwards', 'price_usd' => '$109 upwards'],
+            ['category' => 'Gums Treatment', 'name' => 'Diode Laser Frenectomy', 'price_inr' => '₹5,000/-', 'price_usd' => '$59'],
+            ['category' => 'Gums Treatment', 'name' => 'Laser Gum Contouring', 'price_inr' => '₹10,000/- – ₹25,000/-', 'price_usd' => '$109 – $269'],
+            ['category' => 'Gums Treatment', 'name' => 'Laser Depigmentation', 'price_inr' => '₹10,000/- – ₹25,000/-', 'price_usd' => '$109 – $269'],
+            ['category' => 'Gums Treatment', 'name' => 'Full Mouth Scaling & Polishing', 'price_inr' => '₹4,000/- upwards', 'price_usd' => '$49 upwards'],
+            ['category' => 'Gums Treatment', 'name' => 'Guided Biofilm Therapy for Gum Diseases', 'price_inr' => '₹10,000/-', 'price_usd' => '$109'],
+            ['category' => 'Gums Treatment', 'name' => 'Deep Scaling (Curettage), full mouth', 'price_inr' => '₹10,000/- – ₹20,000/-', 'price_usd' => '$109 – $219'],
+            ['category' => 'Gums Treatment', 'name' => 'Gum-Flap Surgery (per quadrant)', 'price_inr' => '₹10,000/-', 'price_usd' => '$109'],
+            ['category' => 'Gums Treatment', 'name' => 'Bone Grafting', 'price_inr' => '₹10,000/- upwards, as required', 'price_usd' => '$109 upwards, as required'],
+            ['category' => 'Gums Treatment', 'name' => 'Gum Graft', 'price_inr' => '₹18,000/- per tooth', 'price_usd' => '$195 per tooth'],
+
+            ['category' => 'Oral Surgery', 'name' => 'Extraction', 'price_inr' => '₹3,000/- per tooth', 'price_usd' => '$35 per tooth'],
+            ['category' => 'Oral Surgery', 'name' => 'Impaction / Wisdom Tooth Removal', 'price_inr' => '₹15,000/- per tooth', 'price_usd' => '$165 per tooth'],
+            ['category' => 'Oral Surgery', 'name' => 'Biopsy', 'price_inr' => '₹5,000/-', 'price_usd' => '$59'],
+            ['category' => 'Oral Surgery', 'name' => 'Apicectomy', 'price_inr' => '₹10,000/- per tooth', 'price_usd' => '$109 per tooth'],
+            ['category' => 'Oral Surgery', 'name' => 'Sinus Lift (per side)', 'price_inr' => '₹40,000/-', 'price_usd' => '$429'],
+
+            ['category' => 'Orthodontic (Braces) Treatment', 'name' => 'Braces (Metallic), full mouth', 'price_inr' => '₹55,000/-', 'price_usd' => '$585'],
+            ['category' => 'Orthodontic (Braces) Treatment', 'name' => 'Metallic Self-Ligating (Damon)', 'price_inr' => '₹75,000/-', 'price_usd' => '$795'],
+            ['category' => 'Orthodontic (Braces) Treatment', 'name' => 'Braces (Ceramic), full mouth', 'price_inr' => '₹1,00,000/-', 'price_usd' => '$1,065'],
+            ['category' => 'Orthodontic (Braces) Treatment', 'name' => 'Invisalign', 'price_inr' => '₹3,00,000/-', 'price_usd' => '$3,169'],
+
+            ['category' => 'Kids Dentistry (Upto 12 Years)', 'name' => 'Scaling & Polishing', 'price_inr' => '₹4,000/-', 'price_usd' => '$49'],
+            ['category' => 'Kids Dentistry (Upto 12 Years)', 'name' => 'Filling', 'price_inr' => '₹3,000/-', 'price_usd' => '$39'],
+            ['category' => 'Kids Dentistry (Upto 12 Years)', 'name' => 'Extraction', 'price_inr' => '₹3,000/-', 'price_usd' => '$39'],
+            ['category' => 'Kids Dentistry (Upto 12 Years)', 'name' => 'RCT', 'price_inr' => '₹5,000/- onwards', 'price_usd' => '$59 onwards'],
+        ];
+
+        foreach ($pricingItems as $i => $item) {
+            PricingItem::create($item + ['sort_order' => $i + 1]);
+        }
     }
 }

@@ -15,6 +15,7 @@
                 <ul class="mt-3 space-y-2 text-sm">
                     <li><a href="{{ route('home') }}" class="hover:text-brand-400">Home</a></li>
                     <li><a href="{{ route('services.index') }}" class="hover:text-brand-400">Services</a></li>
+                    <li><a href="{{ route('pricing') }}" class="hover:text-brand-400">Pricing</a></li>
                     <li><a href="{{ route('recognition') }}" class="hover:text-brand-400">Recognition</a></li>
                     <li><a href="{{ route('blog.index') }}" class="hover:text-brand-400">Blog</a></li>
                     <li><a href="{{ route('contact') }}" class="hover:text-brand-400">Contact Us</a></li>

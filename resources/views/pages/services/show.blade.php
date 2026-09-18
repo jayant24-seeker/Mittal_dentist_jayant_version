@@ -19,6 +19,23 @@
                  class="mt-8 aspect-video w-full rounded-2xl object-cover">
         @endif
 
+        <div data-reveal class="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-brand-100 bg-brand-50/60 px-5 py-4">
+            @if ($service->price_from)
+                <p class="text-sm font-medium text-ink">
+                    Starting from <span class="text-base font-bold text-brand-600">{{ $service->price_from }}</span>
+                </p>
+                <a href="{{ route('pricing') }}{{ $service->pricing_anchor ? '#' . $service->pricing_anchor : '' }}"
+                   class="text-sm font-semibold text-brand-500 hover:text-brand-600">
+                    See full price list &rarr;
+                </a>
+            @else
+                <p class="text-sm font-medium text-ink">Pricing depends on your specific case.</p>
+                <a href="{{ route('pricing') }}" class="text-sm font-semibold text-brand-500 hover:text-brand-600">
+                    View treatment charges &rarr;
+                </a>
+            @endif
+        </div>
+
         <div data-reveal class="prose prose-neutral mt-8 max-w-none">
             {!! $service->body !!}
         </div>
