@@ -11,8 +11,18 @@ services:
         value: production
       - key: APP_DEBUG
         value: "false"
+      # generateValue: true (the original setting here) is wrong for
+      # Laravel specifically: Render's auto-generated value doesn't
+      # carry the required "base64:" prefix + 32-byte-decoded length,
+      # so Laravel's Encrypter rejects it with "Unsupported cipher or
+      # incorrect key length" — thrown while encrypting the session
+      # cookie, which every real page touches but the /up health check
+      # doesn't, which is why /up always worked while every actual page
+      # 500'd. Generate a real one locally (`php artisan key:generate
+      # --show`) and set it directly in the Render dashboard/API — not
+      # here, since this repo is public and APP_KEY is a real secret.
       - key: APP_KEY
-        generateValue: true
+        sync: false
       # Render assigns the final hostname on first deploy — update this
       # to match if it differs (Settings → Environment on the service).
       - key: APP_URL
@@ -26,15 +36,13 @@ services:
         value: sqlite
       - key: DB_DATABASE
         value: /var/www/html/database/database.sqlite
-      # File, not database — this gets written on every single request
-      # (Laravel writes the session on request termination), and under
-      # real concurrent PHP-FPM workers that was hitting SQLite lock
-      # contention during fastcgi_finish_request()'s post-response
-      # cleanup phase, intermittently crashing with "headers already
-      # sent". Cache stays on the DB since it's read far more than
-      # written and isn't on the hot path of every request.
+      # Database, not file — survives the free plan's idle spin-down
+      # (which wipes the ephemeral disk) between a page load and a form
+      # submit. An earlier fix mistakenly blamed SQLite lock contention
+      # here for the header-corruption crash; the actual cause was the
+      # APP_KEY format above, unrelated to session storage.
       - key: SESSION_DRIVER
-        value: file
+        value: database
       - key: CACHE_STORE
         value: database
       - key: QUEUE_CONNECTION

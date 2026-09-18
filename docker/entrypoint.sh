@@ -24,6 +24,12 @@ php artisan route:cache
 echo "[entrypoint] caching views"
 php artisan view:cache
 
+# Everything above ran as root, so anything it created (the SQLite file on
+# a fresh disk, WAL sidecars, cached config) is root-owned. PHP-FPM serves
+# as www-data, so hand it back before the first request arrives.
+echo "[entrypoint] fixing runtime ownership"
+chown -R www-data:www-data database storage bootstrap/cache
+
 echo "[entrypoint] starting php-fpm"
 php-fpm -D
 

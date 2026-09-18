@@ -33,14 +33,19 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 COPY . .
 
+# The chown below covers the whole database/ directory, not just the
+# .sqlite file: SQLite writes a journal/WAL sidecar next to the database on
+# every write, so a directory PHP-FPM can't write to fails the write itself
+# with "attempt to write a readonly database" — on every page that touches
+# the session, while the /up health check (which never opens the DB) passes.
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress \
     && npm ci \
     && npm run build \
     && rm -rf node_modules \
     && mkdir -p storage/framework/{cache,sessions,testing,views} storage/logs \
     && touch database/database.sqlite \
-    && chown -R www-data:www-data storage bootstrap/cache database/database.sqlite \
-    && chmod -R 775 storage bootstrap/cache database/database.sqlite \
+    && chown -R www-data:www-data storage bootstrap/cache database \
+    && chmod -R 775 storage bootstrap/cache database \
     && chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 10000
