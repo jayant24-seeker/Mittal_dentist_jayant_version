@@ -14,14 +14,15 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Seeds real content pulled from the live mittaldentalclinic.com site,
-     * so the scaffold is browsable end-to-end rather than empty.
+     * so the scaffold is browsable end-to-end rather than empty. Uses
+     * firstOrCreate throughout so this is safe to run on every deploy
+     * (Docker's boot command re-runs it) without duplicate-key errors.
      * Services marked [CONTENT PENDING MIGRATION] still need their full
      * body copied over from the corresponding legacy page in Phase 1.
      */
     public function run(): void
     {
-        TeamMember::create([
-            'slug' => 'dr-sankalp-mittal',
+        TeamMember::firstOrCreate(['slug' => 'dr-sankalp-mittal'], [
             'name' => 'Dr. Sankalp Mittal',
             'title' => 'Oral & Maxillofacial Surgeon and Implantologist',
             'credentials' => 'B.D.S (S.M.S), M.D.S (Manipal), MOMSRCPS (Royal College of Physicians & Surgeons, Glasgow, U.K.), FIAOMS (U.S.A), MISOI, MAOMSI, MAOI, MIDA — Diplomate of International Congress of Oral Implantologists, USA',
@@ -29,8 +30,7 @@ class DatabaseSeeder extends Seeder
             'sort_order' => 1,
         ]);
 
-        TeamMember::create([
-            'slug' => 'dr-preeti-mittal',
+        TeamMember::firstOrCreate(['slug' => 'dr-preeti-mittal'], [
             'name' => 'Dr. Preeti Mittal',
             'title' => 'Dental Surgeon',
             'credentials' => 'B.D.S — Member, Indian Dental Association; Member, Academy of Oral Implantology; Member, Association for Clinical Implant Dentistry',
@@ -133,26 +133,30 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($services as $service) {
-            Service::create($service);
+            Service::firstOrCreate(['slug' => $service['slug']], $service);
         }
 
-        GalleryItem::create([
-            'title' => "Dr. Sankalp Mittal Receives Letter of Appreciation from the Hon'ble Governor of Rajasthan",
-            'description' => 'Professor and Superintendent, RUHS College of Dental Sciences, Jaipur, honoured for transformative leadership in dental education.',
-            'image' => 'https://mittaldentalclinic.com/wp-content/uploads/2026/09/governor-appriciation.jpeg',
-            'category' => 'achievement',
-            'person_name' => 'Shri Haribhau Bagde, Governor of Rajasthan',
-            'sort_order' => 1,
-        ]);
+        GalleryItem::firstOrCreate(
+            ['title' => "Dr. Sankalp Mittal Receives Letter of Appreciation from the Hon'ble Governor of Rajasthan"],
+            [
+                'description' => 'Professor and Superintendent, RUHS College of Dental Sciences, Jaipur, honoured for transformative leadership in dental education.',
+                'image' => 'https://mittaldentalclinic.com/wp-content/uploads/2026/09/governor-appriciation.jpeg',
+                'category' => 'achievement',
+                'person_name' => 'Shri Haribhau Bagde, Governor of Rajasthan',
+                'sort_order' => 1,
+            ]
+        );
 
-        GalleryItem::create([
-            'title' => "Providing Dental Care to the Hon'ble Governor of Rajasthan",
-            'description' => 'Routine check-up conducted at Government Dental College, Jaipur.',
-            'image' => 'https://mittaldentalclinic.com/wp-content/uploads/2026/09/governor-photo.jpeg',
-            'category' => 'achievement',
-            'person_name' => 'Shri Haribhau Bagde, Governor of Rajasthan',
-            'sort_order' => 2,
-        ]);
+        GalleryItem::firstOrCreate(
+            ['title' => "Providing Dental Care to the Hon'ble Governor of Rajasthan"],
+            [
+                'description' => 'Routine check-up conducted at Government Dental College, Jaipur.',
+                'image' => 'https://mittaldentalclinic.com/wp-content/uploads/2026/09/governor-photo.jpeg',
+                'category' => 'achievement',
+                'person_name' => 'Shri Haribhau Bagde, Governor of Rajasthan',
+                'sort_order' => 2,
+            ]
+        );
 
         $placeholderRecognitions = [
             'Felicitated by Former CM of Rajasthan, Shri Ashok Gehlot',
@@ -164,64 +168,76 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($placeholderRecognitions as $i => $title) {
-            GalleryItem::create([
-                'title' => $title,
-                'image' => 'https://placehold.co/800x600/fce7f0/e30569?text=Photo+'.($i + 3),
-                'category' => 'achievement',
-                'sort_order' => $i + 3,
-            ]);
+            GalleryItem::firstOrCreate(
+                ['title' => $title],
+                [
+                    'image' => 'https://placehold.co/800x600/fce7f0/e30569?text=Photo+'.($i + 3),
+                    'category' => 'achievement',
+                    'sort_order' => $i + 3,
+                ]
+            );
         }
 
-        Post::create([
-            'slug' => 'full-mouth-dental-implants-in-jaipur-how-advanced-implant-treatment-changed-a-19-year-olds-life',
-            'title' => "Full Mouth Dental Implants in Jaipur: How Advanced Implant Treatment Changed a 19-Year-Old's Life",
-            'excerpt' => 'A real smile transformation story by Mittal Dental Clinic — imagine being just 19 and afraid to smile, laugh or speak confidently.',
-            'body' => '<p>[CONTENT PENDING MIGRATION] — Full copy to be migrated from the legacy blog post during Phase 1 content migration.</p>',
-            'category' => 'Dental Case Reports',
-            'published_at' => '2026-05-21',
-        ]);
+        Post::firstOrCreate(
+            ['slug' => 'full-mouth-dental-implants-in-jaipur-how-advanced-implant-treatment-changed-a-19-year-olds-life'],
+            [
+                'title' => "Full Mouth Dental Implants in Jaipur: How Advanced Implant Treatment Changed a 19-Year-Old's Life",
+                'excerpt' => 'A real smile transformation story by Mittal Dental Clinic — imagine being just 19 and afraid to smile, laugh or speak confidently.',
+                'body' => '<p>[CONTENT PENDING MIGRATION] — Full copy to be migrated from the legacy blog post during Phase 1 content migration.</p>',
+                'category' => 'Dental Case Reports',
+                'published_at' => '2026-05-21',
+            ]
+        );
 
-        Post::create([
-            'slug' => 'dynamic-navigation-dental-implants-in-jaipur-the-future-of-painless-precise-implant-surgery',
-            'title' => 'Dynamic Navigation Dental Implants in Jaipur: The Future of Painless & Precise Implant Surgery',
-            'excerpt' => 'Experience X-Guide technology at Mittal Dental Clinic — GPS-like precision for safer, more confident implant surgery.',
-            'body' => '<p>[CONTENT PENDING MIGRATION] — Full copy to be migrated from the legacy blog post during Phase 1 content migration.</p>',
-            'category' => 'Dental and Oral Health',
-            'published_at' => '2026-05-20',
-        ]);
+        Post::firstOrCreate(
+            ['slug' => 'dynamic-navigation-dental-implants-in-jaipur-the-future-of-painless-precise-implant-surgery'],
+            [
+                'title' => 'Dynamic Navigation Dental Implants in Jaipur: The Future of Painless & Precise Implant Surgery',
+                'excerpt' => 'Experience X-Guide technology at Mittal Dental Clinic — GPS-like precision for safer, more confident implant surgery.',
+                'body' => '<p>[CONTENT PENDING MIGRATION] — Full copy to be migrated from the legacy blog post during Phase 1 content migration.</p>',
+                'category' => 'Dental and Oral Health',
+                'published_at' => '2026-05-20',
+            ]
+        );
 
-        Post::create([
-            'slug' => 'how-to-stop-toothache-fast-at-home-expert-advice-from-the-best-dental-clinic-in-jaipur',
-            'title' => 'How to Stop Toothache Fast at Home: Expert Advice from the Best Dental Clinic in Jaipur',
-            'excerpt' => 'A sudden toothache can disrupt your entire day. Here\'s expert advice for fast relief.',
-            'body' => '<p>[CONTENT PENDING MIGRATION] — Full copy to be migrated from the legacy blog post during Phase 1 content migration.</p>',
-            'category' => 'Latest News',
-            'published_at' => '2026-05-20',
-        ]);
+        Post::firstOrCreate(
+            ['slug' => 'how-to-stop-toothache-fast-at-home-expert-advice-from-the-best-dental-clinic-in-jaipur'],
+            [
+                'title' => 'How to Stop Toothache Fast at Home: Expert Advice from the Best Dental Clinic in Jaipur',
+                'excerpt' => 'A sudden toothache can disrupt your entire day. Here\'s expert advice for fast relief.',
+                'body' => '<p>[CONTENT PENDING MIGRATION] — Full copy to be migrated from the legacy blog post during Phase 1 content migration.</p>',
+                'category' => 'Latest News',
+                'published_at' => '2026-05-20',
+            ]
+        );
 
         // Real photos go in public/images/transformations/ using the filenames
         // below — drop them in and these records pick them up automatically.
         // Case 1 shows the patient's face, so it's held back (consent_confirmed
         // = false) until the clinic confirms written consent to publish it.
-        Transformation::create([
-            'title' => 'Full Mouth Rehabilitation',
-            'description' => 'Severely decayed, broken teeth restored to a natural, healthy smile.',
-            'before_image' => '/images/transformations/case-1-before.jpg',
-            'after_image' => '/images/transformations/case-1-after.jpg',
-            'shows_face' => true,
-            'consent_confirmed' => false,
-            'sort_order' => 1,
-        ]);
+        Transformation::firstOrCreate(
+            ['title' => 'Full Mouth Rehabilitation'],
+            [
+                'description' => 'Severely decayed, broken teeth restored to a natural, healthy smile.',
+                'before_image' => '/images/transformations/case-1-before.jpg',
+                'after_image' => '/images/transformations/case-1-after.jpg',
+                'shows_face' => true,
+                'consent_confirmed' => false,
+                'sort_order' => 1,
+            ]
+        );
 
-        Transformation::create([
-            'title' => 'Anterior Smile Makeover',
-            'description' => 'Decayed and misaligned front teeth rebuilt with natural-looking crowns.',
-            'before_image' => '/images/transformations/case-2-before.jpg',
-            'after_image' => '/images/transformations/case-2-after.jpg',
-            'shows_face' => false,
-            'consent_confirmed' => false,
-            'sort_order' => 2,
-        ]);
+        Transformation::firstOrCreate(
+            ['title' => 'Anterior Smile Makeover'],
+            [
+                'description' => 'Decayed and misaligned front teeth rebuilt with natural-looking crowns.',
+                'before_image' => '/images/transformations/case-2-before.jpg',
+                'after_image' => '/images/transformations/case-2-after.jpg',
+                'shows_face' => false,
+                'consent_confirmed' => false,
+                'sort_order' => 2,
+            ]
+        );
 
         // Full price list migrated verbatim from the legacy /charges/ page.
         $pricingItems = [
@@ -285,7 +301,10 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($pricingItems as $i => $item) {
-            PricingItem::create($item + ['sort_order' => $i + 1]);
+            PricingItem::firstOrCreate(
+                ['category' => $item['category'], 'name' => $item['name']],
+                $item + ['sort_order' => $i + 1]
+            );
         }
     }
 }

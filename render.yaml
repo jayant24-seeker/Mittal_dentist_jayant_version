@@ -1,0 +1,43 @@
+services:
+  - type: web
+    name: mittal-dental-clinic
+    runtime: docker
+    plan: free
+    healthCheckPath: /up
+    envVars:
+      - key: APP_NAME
+        value: "Mittal Dental Clinic"
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        generateValue: true
+      # Render assigns the final hostname on first deploy — update this
+      # to match if it differs (Settings → Environment on the service).
+      - key: APP_URL
+        value: "https://mittal-dental-clinic.onrender.com"
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_URL
+        fromDatabase:
+          name: mittal-dental-db
+          property: connectionString
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: MAIL_MAILER
+        value: log
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: LOG_LEVEL
+        value: info
+
+databases:
+  - name: mittal-dental-db
+    plan: free
+    databaseName: mittal_dental
+    user: mittal_dental
