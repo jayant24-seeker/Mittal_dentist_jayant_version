@@ -26,8 +26,15 @@ services:
         value: sqlite
       - key: DB_DATABASE
         value: /var/www/html/database/database.sqlite
+      # File, not database — this gets written on every single request
+      # (Laravel writes the session on request termination), and under
+      # real concurrent PHP-FPM workers that was hitting SQLite lock
+      # contention during fastcgi_finish_request()'s post-response
+      # cleanup phase, intermittently crashing with "headers already
+      # sent". Cache stays on the DB since it's read far more than
+      # written and isn't on the hot path of every request.
       - key: SESSION_DRIVER
-        value: database
+        value: file
       - key: CACHE_STORE
         value: database
       - key: QUEUE_CONNECTION
