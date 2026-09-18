@@ -8,7 +8,11 @@ COPY vite.config.js ./
 RUN npm run build
 
 # --- Stage 2: PHP application ---
-FROM php:8.3-cli-bookworm AS app
+# composer.lock was resolved on PHP 8.5 (the local dev machine's version),
+# which pulled in symfony/http-foundation v8.1.7 — that package requires
+# PHP >=8.4.1, so this image must be at least 8.4 even though composer.json
+# itself only declares "^8.3".
+FROM php:8.5-cli-bookworm AS app
 WORKDIR /var/www/html
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
