@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Placeholder illustration of an implant-supported crown filling the gap after treatment">
+  <defs>
+    <linearGradient id="bgA3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFF6FA"/>
+      <stop offset="1" stop-color="#FFE7F1"/>
+    </linearGradient>
+    <linearGradient id="toothA3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F3F6F8"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#9AA4AE"/>
+      <stop offset=".5" stop-color="#D5DCE2"/>
+      <stop offset="1" stop-color="#8F99A3"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bgA3)"/>
+
+  <path d="M0 440 Q400 360 800 440 L800 600 L0 600 Z" fill="#F2A3BE"/>
+  <path d="M0 440 Q400 360 800 440 L800 478 Q400 400 0 478 Z" fill="#E8809F" opacity=".45"/>
+
+  <!-- implant post seated in the gum -->
+  <g>
+    <rect x="384" y="404" width="32" height="120" rx="10" fill="url(#metal)"/>
+    <g stroke="#7E8892" stroke-width="3" opacity=".65">
+      <line x1="386" y1="424" x2="414" y2="424"/>
+      <line x1="386" y1="444" x2="414" y2="444"/>
+      <line x1="386" y1="464" x2="414" y2="464"/>
+      <line x1="386" y1="484" x2="414" y2="484"/>
+    </g>
+    <rect x="374" y="386" width="52" height="26" rx="9" fill="url(#metal)"/>
+  </g>
+
+  <!-- restored molars -->
+  <path d="M196 230 q0-22 22-22 h84 q22 0 22 22 v96 q0 40-26 58 q-16 12-32 0 q-26-18-26-58 q0-26-8-26 t-8 26 q0 40-26 58 q-16 12-32 0 q-26-18-26-58 z" transform="translate(-14 0)" fill="url(#toothA3)" stroke="#EBD3DD" stroke-width="2"/>
+  <path d="M516 230 q0-22 22-22 h84 q22 0 22 22 v96 q0 40-26 58 q-16 12-32 0 q-26-18-26-58 q0-26-8-26 t-8 26 q0 40-26 58 q-16 12-32 0 q-26-18-26-58 z" fill="url(#toothA3)" stroke="#EBD3DD" stroke-width="2"/>
+
+  <!-- new crown filling the gap -->
+  <path d="M352 244 q0-20 20-20 h56 q20 0 20 20 v104 q0 46-48 46 t-48-46 z" fill="url(#toothA3)" stroke="#EBD3DD" stroke-width="2"/>
+  <rect x="378" y="258" width="14" height="72" rx="7" fill="#FFFFFF" opacity=".9"/>
+
+  <g fill="#E30569">
+    <path d="M478 196 l7 18 18 7-18 7-7 18-7-18-18-7 18-7z"/>
+    <path d="M292 262 l5 13 13 5-13 5-5 13-5-13-13-5 13-5z" opacity=".75"/>
+  </g>
+
+  <text x="744" y="570" text-anchor="end" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="17" fill="#8A1F49" opacity=".38">Sample visual</text>
+</svg>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Placeholder illustration of even, restored front teeth after treatment">
+  <defs>
+    <linearGradient id="bgA" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFF6FA"/>
+      <stop offset="1" stop-color="#FFE7F1"/>
+    </linearGradient>
+    <linearGradient id="toothA" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F3F6F8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bgA)"/>
+
+  <!-- gum line, healthy tone -->
+  <path d="M0 430 Q400 350 800 430 L800 600 L0 600 Z" fill="#F2A3BE"/>
+  <path d="M0 430 Q400 350 800 430 L800 470 Q400 392 0 470 Z" fill="#E8809F" opacity=".45"/>
+
+  <!-- four even, restored incisors -->
+  <path d="M214 218 q0-20 20-20 h52 q20 0 20 20 v118 q0 46-46 46 t-46-46 z" fill="url(#toothA)" stroke="#EBD3DD" stroke-width="2"/>
+  <path d="M330 208 q0-20 20-20 h54 q20 0 20 20 v126 q0 48-47 48 t-47-48 z" fill="url(#toothA)" stroke="#EBD3DD" stroke-width="2"/>
+  <path d="M444 208 q0-20 20-20 h54 q20 0 20 20 v126 q0 48-47 48 t-47-48 z" fill="url(#toothA)" stroke="#EBD3DD" stroke-width="2"/>
+  <path d="M560 218 q0-20 20-20 h52 q20 0 20 20 v118 q0 46-46 46 t-46-46 z" fill="url(#toothA)" stroke="#EBD3DD" stroke-width="2"/>
+
+  <!-- enamel highlights -->
+  <g fill="#FFFFFF" opacity=".85">
+    <rect x="238" y="228" width="12" height="62" rx="6"/>
+    <rect x="356" y="220" width="13" height="70" rx="6.5"/>
+    <rect x="470" y="220" width="13" height="70" rx="6.5"/>
+    <rect x="584" y="228" width="12" height="62" rx="6"/>
+  </g>
+
+  <!-- sparkles -->
+  <g fill="#E30569">
+    <path d="M655 175 l7 18 18 7-18 7-7 18-7-18-18-7 18-7z"/>
+    <path d="M176 258 l5 13 13 5-13 5-5 13-5-13-13-5 13-5z" opacity=".75"/>
+  </g>
+
+  <text x="744" y="570" text-anchor="end" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="17" fill="#8A1F49" opacity=".38">Sample visual</text>
+</svg>

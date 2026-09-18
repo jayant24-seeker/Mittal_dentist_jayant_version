@@ -227,15 +227,32 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        Transformation::firstOrCreate(
+        // Cases 2 and 3 are clinical close-ups with no face in frame, so they
+        // publish without consent sign-off. They use updateOrCreate rather than
+        // firstOrCreate so swapping in real photography only means changing the
+        // paths here — note this also resets consent_confirmed on every reseed,
+        // which fails closed (hidden) and is the safe direction for this flag.
+        Transformation::updateOrCreate(
             ['title' => 'Anterior Smile Makeover'],
             [
                 'description' => 'Decayed and misaligned front teeth rebuilt with natural-looking crowns.',
-                'before_image' => '/images/transformations/case-2-before.jpg',
-                'after_image' => '/images/transformations/case-2-after.jpg',
+                'before_image' => '/images/transformations/case-2-before.svg',
+                'after_image' => '/images/transformations/case-2-after.svg',
                 'shows_face' => false,
                 'consent_confirmed' => false,
                 'sort_order' => 2,
+            ]
+        );
+
+        Transformation::updateOrCreate(
+            ['title' => 'Single Tooth Implant'],
+            [
+                'description' => 'A missing tooth replaced with a titanium implant and a colour-matched crown.',
+                'before_image' => '/images/transformations/case-3-before.svg',
+                'after_image' => '/images/transformations/case-3-after.svg',
+                'shows_face' => false,
+                'consent_confirmed' => false,
+                'sort_order' => 3,
             ]
         );
 

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Placeholder illustration of a missing tooth gap before implant treatment">
+  <defs>
+    <linearGradient id="bgB3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EFEDEA"/>
+      <stop offset="1" stop-color="#E2DFDA"/>
+    </linearGradient>
+    <linearGradient id="toothB3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#DED7C9"/>
+      <stop offset="1" stop-color="#C9BFAC"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bgB3)"/>
+
+  <path d="M0 440 Q400 360 800 440 L800 600 L0 600 Z" fill="#C49AA6"/>
+  <path d="M0 440 Q400 360 800 440 L800 478 Q400 400 0 478 Z" fill="#B98C99" opacity=".5"/>
+
+  <!-- molars either side of an empty socket -->
+  <path d="M196 230 q0-22 22-22 h84 q22 0 22 22 v96 q0 40-26 58 q-16 12-32 0 q-26-18-26-58 q0-26-8-26 t-8 26 q0 40-26 58 q-16 12-32 0 q-26-18-26-58 z" transform="translate(-14 0)" fill="url(#toothB3)" stroke="#BCB1A0" stroke-width="2"/>
+
+  <path d="M516 230 q0-22 22-22 h84 q22 0 22 22 v96 q0 40-26 58 q-16 12-32 0 q-26-18-26-58 q0-26-8-26 t-8 26 q0 40-26 58 q-16 12-32 0 q-26-18-26-58 z" fill="url(#toothB3)" stroke="#BCB1A0" stroke-width="2"/>
+
+  <!-- the gap: recessed, shadowed socket -->
+  <ellipse cx="400" cy="408" rx="74" ry="30" fill="#A8808D"/>
+  <ellipse cx="400" cy="402" rx="60" ry="22" fill="#8E6675" opacity=".85"/>
+
+  <!-- dashed outline marking the missing tooth -->
+  <path d="M356 252 q0-18 18-18 h52 q18 0 18 18 v96 q0 42-44 42 t-44-42 z"
+        fill="none" stroke="#9A8D7C" stroke-width="3" stroke-dasharray="11 10" opacity=".8"/>
+
+  <text x="744" y="570" text-anchor="end" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="17" fill="#000" opacity=".28">Sample visual</text>
+</svg>
