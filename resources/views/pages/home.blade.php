@@ -58,6 +58,29 @@
         </div>
     </section>
 
+    {{-- Patient transformations --}}
+    @if ($transformations->isNotEmpty())
+        <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+            <x-section-heading eyebrow="Real Results" tag="h2">Patient Transformations</x-section-heading>
+            <p data-reveal class="mx-auto mt-4 max-w-2xl text-center text-ink-muted">
+                Drag the slider to see the difference our treatments make — real cases, real recoveries.
+            </p>
+
+            <div class="mt-12 grid gap-8 sm:grid-cols-2">
+                @foreach ($transformations as $case)
+                    <x-before-after-slider
+                        :before="$case->before_image"
+                        :after="$case->after_image"
+                        :title="$case->title" />
+                @endforeach
+            </div>
+
+            <div class="mx-auto mt-12 max-w-3xl">
+                <x-youtube-embed id="Hlsed6Q9dus" title="Mittal Dental Clinic — Clinic Tour" />
+            </div>
+        </section>
+    @endif
+
     {{-- Recognition teaser --}}
     @if ($recognitions->isNotEmpty())
         <section class="bg-brand-50/60 py-16 sm:py-24">

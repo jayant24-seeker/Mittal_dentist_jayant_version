@@ -6,6 +6,7 @@ use App\Models\GalleryItem;
 use App\Models\Post;
 use App\Models\Service;
 use App\Models\TeamMember;
+use App\Models\Transformation;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -154,7 +155,7 @@ class DatabaseSeeder extends Seeder
         foreach ($placeholderRecognitions as $i => $title) {
             GalleryItem::create([
                 'title' => $title,
-                'image' => 'https://placehold.co/800x600/fce7f0/e30569?text=Photo+' . ($i + 3),
+                'image' => 'https://placehold.co/800x600/fce7f0/e30569?text=Photo+'.($i + 3),
                 'category' => 'achievement',
                 'sort_order' => $i + 3,
             ]);
@@ -185,6 +186,30 @@ class DatabaseSeeder extends Seeder
             'body' => '<p>[CONTENT PENDING MIGRATION] — Full copy to be migrated from the legacy blog post during Phase 1 content migration.</p>',
             'category' => 'Latest News',
             'published_at' => '2026-05-20',
+        ]);
+
+        // Real photos go in public/images/transformations/ using the filenames
+        // below — drop them in and these records pick them up automatically.
+        // Case 1 shows the patient's face, so it's held back (consent_confirmed
+        // = false) until the clinic confirms written consent to publish it.
+        Transformation::create([
+            'title' => 'Full Mouth Rehabilitation',
+            'description' => 'Severely decayed, broken teeth restored to a natural, healthy smile.',
+            'before_image' => '/images/transformations/case-1-before.jpg',
+            'after_image' => '/images/transformations/case-1-after.jpg',
+            'shows_face' => true,
+            'consent_confirmed' => false,
+            'sort_order' => 1,
+        ]);
+
+        Transformation::create([
+            'title' => 'Anterior Smile Makeover',
+            'description' => 'Decayed and misaligned front teeth rebuilt with natural-looking crowns.',
+            'before_image' => '/images/transformations/case-2-before.jpg',
+            'after_image' => '/images/transformations/case-2-after.jpg',
+            'shows_face' => false,
+            'consent_confirmed' => false,
+            'sort_order' => 2,
         ]);
     }
 }
