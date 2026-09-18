@@ -13,10 +13,11 @@ WORKDIR /var/www/html
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
+        libsqlite3-dev \
         libzip-dev \
         unzip \
         git \
-    && docker-php-ext-install pdo_pgsql pgsql zip bcmath \
+    && docker-php-ext-install pdo_pgsql pgsql pdo_sqlite zip bcmath \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
@@ -26,7 +27,8 @@ COPY --from=assets /app/public/build ./public/build
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress \
     && mkdir -p storage/framework/{cache,sessions,testing,views} storage/logs \
-    && chmod -R 775 storage bootstrap/cache
+    && touch database/database.sqlite \
+    && chmod -R 775 storage bootstrap/cache database/database.sqlite
 
 # Render provides $PORT at runtime; migrate + cache config on boot since
 # secrets (APP_KEY, DB_URL) only exist as real values at container start,

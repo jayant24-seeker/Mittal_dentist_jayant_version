@@ -17,12 +17,15 @@ services:
       # to match if it differs (Settings → Environment on the service).
       - key: APP_URL
         value: "https://mittal-dental-clinic.onrender.com"
+      # SQLite so this deploy doesn't need a second free-tier database
+      # (Render allows only one free Postgres per account). Data resets
+      # on every redeploy and on the free plan's idle spin-down/spin-up
+      # cycle, since the disk isn't persistent — fine for letting people
+      # preview the site, not a substitute for a real production database.
       - key: DB_CONNECTION
-        value: pgsql
-      - key: DB_URL
-        fromDatabase:
-          name: mittal-dental-db
-          property: connectionString
+        value: sqlite
+      - key: DB_DATABASE
+        value: /var/www/html/database/database.sqlite
       - key: SESSION_DRIVER
         value: database
       - key: CACHE_STORE
@@ -35,9 +38,3 @@ services:
         value: stderr
       - key: LOG_LEVEL
         value: info
-
-databases:
-  - name: mittal-dental-db
-    plan: free
-    databaseName: mittal_dental
-    user: mittal_dental
